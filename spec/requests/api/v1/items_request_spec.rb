@@ -33,4 +33,17 @@ describe 'Items API' do
     expect(item.name).to eq(item_params[:name])
     expect(item.description).to eq(item_params[:description])
   end
+
+  it "can update an existing item" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: 'Luba' }
+
+    put "/api/v1/items/#{id}", params: { item: item_params }
+    item = Item.find-by(id: id)
+
+    expect(response).to be_successful
+    expect(item.name).to_not eq(previous_name)
+    expect(item.name).to eq("Luba")
+  end
 end
