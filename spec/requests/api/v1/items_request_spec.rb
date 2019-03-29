@@ -47,8 +47,20 @@ describe 'Items API' do
 
     expect(item.name).to_not eq(previous_name)
     expect(item.name).to eq("Luba")
-    
+
     expect(item.description).to_not eq(previous_description)
     expect(item.description).to eq("My dog is scared of the dark")
+  end
+
+  it "can destroy an existing item" do
+    id = create(:item).id
+
+    expect(Item.count).to eq(1)
+
+    delete "/api/v1/items/#{id}"
+
+    expect(response).to be_successful
+    expect(Item.count).to eq(0)
+    expect{Item.find(id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
