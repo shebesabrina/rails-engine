@@ -9,8 +9,14 @@ describe 'Items API' do
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
-    items = JSON.parse(response.body)
+    items = JSON.parse(response.body, symbolize_names: true)
     expect(items.count).to eq(3)
+    expect(items[0]).to have_key(:id)
+    expect(items[0]).to have_key(:name)
+    expect(items[0]).to have_key(:description)
+    expect(items[0]).to have_key(:merchant_id)
+    expect(items[0]).to have_key(:created_at)
+    expect(items[0]).to have_key(:updated_at)
   end
 
   it 'Sends item by id' do
@@ -18,10 +24,15 @@ describe 'Items API' do
 
     get "/api/v1/items/#{id}"
 
-    item =  JSON.parse(response.body)
+    item =  JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
-    expect(item["id"]).to eq(id)
+    expect(item[:id]).to eq(id)
+    expect(item).to have_key(:name)
+    expect(item).to have_key(:description)
+    expect(item).to have_key(:merchant_id)
+    expect(item).to have_key(:created_at)
+    expect(item).to have_key(:updated_at)
   end
 
   it "can create a new item" do
