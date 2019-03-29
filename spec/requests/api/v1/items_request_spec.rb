@@ -15,7 +15,7 @@ describe 'Items API' do
   it 'Sends item by id' do
     id =  create(:item).id
 
-    get "api/v1/items/#{id}"
+    get "/api/v1/items/#{id}"
 
     item =  JSON.parse(response.body)
 
