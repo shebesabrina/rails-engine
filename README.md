@@ -1,24 +1,25 @@
-# README
+# Rales Engine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Rales Engine app manages data to execute business intelligence queries. The user can review sales engine data for merchants, items, invoices, invoice items, transactions, and customers. This application uses Ruby on Rails 5.2, ActiveRecord, and the tests are done with FactoryBot and RSpec.
 
-Things you may want to cover:
+In order to "seed" the data, we created a rake task that parses through the CSVs from the spec harness in the lib/task folder. You import the CVSs by running rake import:all.
 
-* Ruby version
+# Set up and Installation
 
-* System dependencies
+1. clone down the repo.
+`git clone github.com/shebesabrina/rails-engine.git`  
+`bundle update`
 
-* Configuration
+2. Set up the migration.
+`rake db:{create,migrate}`
 
-* Database creation
+3. Import the CSV data.
+` rake import:all`
 
-* Database initialization
+4. Once the database has been seeded you can run the tests.
+`rspec`
 
-* How to run the test suite
+5. You can then run the server.
+`rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+6. You can then go to localhost:3000/api/v1/____(url of choice) which can be located in the routes file under config.
