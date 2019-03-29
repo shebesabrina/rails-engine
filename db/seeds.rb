@@ -1,7 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# 10.times do
+#   Merchant.create!(
+#     name: Faker::RickAndMorty.character
+#   )
+# end
 #
-# Examples:
+# 10.times do
+#     Item.create!(
+#       name: Faker::HowIMetYourMother.character,
+#       description: Faker::Hipster.words,
+#       unit_price: rand(1..100),
+#       merchant_id: rand(1..10),
+#     )
+#   end
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   10.times do
+#     Customer.create!(
+#       first_name: Faker::Simpsons.character,
+#       last_name: Faker::HitchhikersGuideToTheGalaxy.character
+#     )
+#   end
+#
+#   10.times do
+#     Invoice.create!(
+#       customer_id: rand(1..10),
+#       merchant_id: rand(1..10),
+#       status: "shipped"
+#     )
+#   end
+#
+#   10.times do
+#     Transaction.create!(
+#       credit_card_number: rand(1..1000),
+#       invoice_id: rand(1..10),
+#       result: "success"
+#     )
+#   end
+#
+#   100.times do
+#     InvoiceItem.create!(
+#       item_id: rand(1..10),
+#       invoice_id: rand(1..10),
+#       quantity: rand(1..10)
+#     )
+#   end
