@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Items API' do
   it 'Sends all items' do
-    merchant = create(:merchant)
-    create_list(:item, 3, merchant_id: merchant.id)
+    create_list(:item, 3)
 
     get '/api/v1/items'
 
@@ -15,7 +14,6 @@ describe 'Items API' do
   end
 
   it 'Sends item by id' do
-    merchant = create(:merchant)
     id =  create(:item).id
 
     get "/api/v1/items/#{id}"
@@ -26,8 +24,10 @@ describe 'Items API' do
     expect(item["id"]).to eq(id)
   end
 
-  xit "can create a new item" do
-    item_params = { name: "Saw", description: "I want to play a game." }
+  it "can create a new item" do
+    merchant_id = create(:merchant).id
+    item_params = { name: "Saw", description: "I want to play a game.",
+                    merchant_id: merchant_id }
 
     post "/api/v1/items", params: { item: item_params }
     item = Item.last
@@ -37,7 +37,7 @@ describe 'Items API' do
     expect(item.description).to eq(item_params[:description])
   end
 
-  xit "can update an existing item" do
+  it "can update an existing item" do
     id = create(:item).id
     previous_name = Item.last.name
     previous_description = Item.last.description
@@ -55,7 +55,7 @@ describe 'Items API' do
     expect(item.description).to eq("My dog is scared of the dark")
   end
 
-  xit "can destroy an existing item" do
+  it "can destroy an existing item" do
     id = create(:item).id
 
     expect(Item.count).to eq(1)

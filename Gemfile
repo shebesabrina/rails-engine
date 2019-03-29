@@ -16,6 +16,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'rb-readline'
+  gem 'shoulda-matchers'
 end
 
 group :development do
