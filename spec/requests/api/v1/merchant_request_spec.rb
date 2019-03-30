@@ -16,4 +16,18 @@ describe 'Merchants API' do
     expect(merchants[0]).to have_key(:created_at)
     expect(merchants[0]).to have_key(:updated_at)
   end
+
+  it 'send merchant by id' do
+    id = create(:merchant).id
+
+    get "/api/v1/merchants/#{id}"
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to be_successful
+    expect(merchant).to have_key(:id)
+    expect(merchant).to have_key(:name)
+    expect(merchant).to have_key(:created_at)
+    expect(merchant).to have_key(:updated_at)
+  end
 end
