@@ -25,6 +25,22 @@ describe 'Merchants API' do
     merchant = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
+    expect(merchant[:id]).to eq(id)
+    expect(merchant).to have_key(:id)
+    expect(merchant).to have_key(:name)
+    expect(merchant).to have_key(:created_at)
+    expect(merchant).to have_key(:updated_at)
+  end
+
+  it 'returns a collection of items associated with that merchant' do
+    id =  create(:merchant).id
+
+    get "/api/v1/merchants/#{id}/items"
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to be_successful
+    expect(merchant[:id]).to eq(id)
     expect(merchant).to have_key(:id)
     expect(merchant).to have_key(:name)
     expect(merchant).to have_key(:created_at)
