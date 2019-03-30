@@ -8,7 +8,7 @@ describe 'Merchants API' do
 
     expect(response.status).to eq(200)
 
-    merchants = JSON.parse(response.body, symbolize_names: ture)
+    merchants = JSON.parse(response.body, symbolize_names: true)
 
     expect(merchants.count).to eq(3)
     expect(merchants[0]).to have_key(:id)
