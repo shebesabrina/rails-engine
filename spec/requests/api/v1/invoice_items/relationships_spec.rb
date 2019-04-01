@@ -8,9 +8,9 @@ describe 'Invoice Items API relationships' do
 
     expect(response).to be_successful
 
-    invoice = JSON.parse(response.body)
+    invoice = JSON.parse(response.body, symbolize_names: true)
 
-    expect(invoice['id']).to eq(ii.invoice_id)
+    expect(invoice[:id]).to eq(ii.invoice_id)
   end
 
   it 'returns the associated item' do
@@ -20,8 +20,8 @@ describe 'Invoice Items API relationships' do
 
     expect(response).to be_successful
 
-    item = JSON.parse(response.body)
+    item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item['id']).to eq(ii.item_id)
+    expect(item[:id]).to eq(ii.item_id)
   end
 end
