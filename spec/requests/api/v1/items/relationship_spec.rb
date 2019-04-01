@@ -20,8 +20,8 @@ describe 'Items API relationships' do
 
     expect(response).to be_successful
 
-    merchant = JSON.parse(response.body)
+    merchant = JSON.parse(response.body, symbolize_names: true)
 
-    expect(merchant).to eq(item.merchant_id)
+    expect(merchant[:id]).to eq(item.merchant_id)
   end
 end
