@@ -21,14 +21,15 @@ describe 'Invoices API relationships' do
 
     get "/api/v1/invoices/#{invoice.id}/invoice_items"
 
+    expect(response).to be_successful
+
     invoice_items = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response.body).to be_successful
     invoice_items.each do |ii|
       expect(ii['invoice_id']).to eq(invoice.id)
     end
 
-    expect(invoice_items).to eq(invoice_id.invoice_items)
+    expect(invoice_items).to eq(invoice.invoice_items)
   end
 
 end
