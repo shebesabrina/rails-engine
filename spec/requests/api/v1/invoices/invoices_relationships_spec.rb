@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Invoices API relationships' do
-  xit 'returns a collection of associated transactions' do
+  it 'returns a collection of associated transactions' do
     invoice = create(:invoice)
 
     get "/api/v1/invoices/#{invoice.id}/transactions"
