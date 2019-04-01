@@ -54,12 +54,9 @@ describe 'Invoices API relationships' do
 
     expect(response).to be_successful
 
-    customers = JSON.parse(response.body, symbolize_names: true)
-    customers.each do |customer|
-      expect(customer['invoice_id']).to eq(invoice.id)
-    end
+    customer = JSON.parse(response.body, symbolize_names: true)
 
-    expect(customers).to eq(invoice.customers)
+    expect(customer[:id]).to eq(invoice.customer.id)
   end
 
 end
