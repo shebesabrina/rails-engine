@@ -33,31 +33,33 @@ describe 'Merchants API' do
   end
 
   it 'returns a collection of items associated with that merchant' do
-    id =  create(:merchant).id
+    merchant =  create(:merchant)
 
-    get "/api/v1/merchants/#{id}/items"
-
-    merchant = JSON.parse(response.body, symbolize_names: true)
+    get "/api/v1/merchants/#{merchant.id}/items"
 
     expect(response).to be_successful
-    expect(merchant[:id]).to eq(id)
-    expect(merchant).to have_key(:id)
-    expect(merchant).to have_key(:name)
-    expect(merchant).to have_key(:created_at)
-    expect(merchant).to have_key(:updated_at)
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    items.each do |item|
+      expect(item['merchant_id'].to eq(merchant.id))
+    end
+    expect(items).to eq(merchant.items)
   end
 
   it 'returns all invoices associated with a merchant by id' do
-    id =  create(:merchant).id
+    merchant =  create(:merchant)
 
-    get "/api/v1/merchants/#{id}/invoices"
+    get "/api/v1/merchants/#{merchant.id}/invoices"
 
-    merchant = JSON.parse(response.body, symbolize_names: true)
     expect(response).to be_successful
-    expect(merchant[:id]).to eq(id)
-    expect(merchant).to have_key(:id)
-    expect(merchant).to have_key(:name)
-    expect(merchant).to have_key(:created_at)
-    expect(merchant).to have_key(:updated_at)
+
+    invoices = JSON.parse(response.body, symbolize_names: true)
+
+    invoices.each do |invoice|
+      expect(invoice['merchant_id']).to eq(merchant.id)
+    end
+
+    expect(invoices).to eq(merchant.items)
   end
 end
