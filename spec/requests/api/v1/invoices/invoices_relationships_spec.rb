@@ -47,4 +47,19 @@ describe 'Invoices API relationships' do
     expect(items).to eq(invoice.items)
   end
 
+  it 'returns the associated customer' do
+    invoice =  create(:invoice)
+
+    get "/api/v1/invoices/#{invoice.id}/customers"
+
+    expect(response).to be_successful
+
+    customers = JSON.parse(response.body, symbolize_names: true)
+    customers.each do |customer|
+      expect(customer['invoice_id']).to eq(invoice.id)
+    end
+
+    expect(customers).to eq(invoice.customers)
+  end
+
 end
