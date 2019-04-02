@@ -9,10 +9,7 @@ describe 'Transaction API relationships' do
     expect(response).to be_successful
 
     invoices = JSON.parse(response.body, symbolize_names: true)
-    invoices.each do |invoice|
-      expect(invoice['transaction_id']).to eq(invoice.id)
-    end
 
-    expect(invoices).to eq(transaction.invoices)
+    expect(invoices[:id]).to eq(transaction.invoice_id)
   end
 end

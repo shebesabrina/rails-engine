@@ -28,6 +28,9 @@ Rails.application.routes.draw do
       end
       resources :items, only: [:index, :show, :create, :update, :destroy]
 
+      namespace :transactions do
+        get '/:id/invoice', to: 'invoice#show'
+      end
       resources :transactions, only: [:index, :show]
     end
   end
