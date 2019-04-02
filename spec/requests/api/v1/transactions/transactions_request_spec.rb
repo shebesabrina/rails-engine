@@ -14,7 +14,7 @@ describe 'Transactions API' do
       expect(transaction).to have_key(:id)
       expect(transaction).to have_key(:invoice_id)
       expect(transaction).to have_key(:credit_card_number)
-      expect(transaction).to have_key(:credit_card_expiraton_date)
+      expect(transaction).to have_key(:credit_card_expiration_date)
       expect(transaction).to have_key(:result)
       expect(transaction).to have_key(:created_at)
       expect(transaction).to have_key(:updated_at)
@@ -24,7 +24,7 @@ describe 'Transactions API' do
   end
 
   it 'sends a transaction by id' do
-    id = create(:transaction)
+    id = create(:transaction).id
 
     get "/api/v1/transactions/#{id}"
 
@@ -35,7 +35,7 @@ describe 'Transactions API' do
     expect(transaction).to have_key(:id)
     expect(transaction).to have_key(:invoice_id)
     expect(transaction).to have_key(:credit_card_number)
-    expect(transaction).to have_key(:credit_card_expiraton_date)
+    expect(transaction).to have_key(:credit_card_expiration_date)
     expect(transaction).to have_key(:result)
     expect(transaction).to have_key(:created_at)
     expect(transaction).to have_key(:updated_at)
