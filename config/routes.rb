@@ -29,10 +29,13 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show, :create, :update, :destroy]
 
       namespace :transactions do
-        get '/:id/invoice', to: 'invoice#show'
+        get '/:id/invoice', to: 'invoices#show'
       end
       resources :transactions, only: [:index, :show]
 
+      namespace :customers do
+        get '/:id/invoices', to: 'invoices#index'
+      end
       resources :customers, only: [:index, :show]
     end
   end

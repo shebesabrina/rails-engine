@@ -8,11 +8,10 @@ describe 'Customer API relationships' do
 
     expect(response).to be_successful
 
-    invoices = JSON.parse(response.body, symbolize_names: true)
+    invoices = JSON.parse(response.body)
     invoices.each do |invoice|
-      expect(invoice[:customer_id]).to eq(customer.invoices)
+      expect(invoice['customer_id']).to eq(customer.id)
     end
-
-    expect(customer).to eq(invoices.customer)
+    expect(invoices).to eq(customer.invoices)
   end
 end
