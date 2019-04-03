@@ -2,7 +2,10 @@
 
 The Rales Engine app manages data to execute business intelligence queries. The user can review sales engine data for merchants, items, invoices, invoice items, transactions, and customers. This application uses Ruby on Rails 5.2, ActiveRecord, and the tests are done with FactoryBot and RSpec.
 
-In order to "seed" the data, we created a rake task that parses through the CSVs from the spec harness in the lib/task folder. You import the CVSs by running rake import:all.
+In order to "seed" the data, we created a rake task that parses through the CSVs from the spec harness in the lib/task folder. You import the CVSs by running rake import:all. Below is a
+diagram of the tables and their relationships.
+
+![table diagram](tables.png)
 
 # Set up and Installation
 
@@ -15,6 +18,15 @@ In order to "seed" the data, we created a rake task that parses through the CSVs
 
 3. Import the CSV data.
 `rake import:all`
+
+4. Check that the data has been imported.
+ * `rails c`
+ ** `Customer.first`
+ ** `Merchant.first`
+ ** `Item.first`
+ ** `Invoice.first`
+ ** `InvoiceItem.first`
+ ** `Transaction.first`
 
 4. Once the database has been seeded you can run the tests.
 `rspec`
