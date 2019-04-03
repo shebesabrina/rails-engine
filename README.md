@@ -14,7 +14,7 @@ In order to "seed" the data, we created a rake task that parses through the CSVs
 `rake db:{create,migrate}`
 
 3. Import the CSV data.
-` rake import:all`
+`rake import:all`
 
 4. Once the database has been seeded you can run the tests.
 `rspec`

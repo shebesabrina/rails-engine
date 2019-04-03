@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 namespace :import do
   desc "Import data from CSV file"
@@ -11,6 +11,7 @@ namespace :import do
                         created_at: row[:created_at],
                         updated_at: row[:updated_at])
     end
+    puts "Created #{Customer.count} customers."
 
     CSV.foreach('./lib/csv/merchants.csv', headers: true, header_converters: :symbol) do |row|
       Merchant.create!( id:         row[:id],
@@ -18,6 +19,7 @@ namespace :import do
                         created_at: row[:created_at],
                         updated_at: row[:updated_at])
     end
+    puts "Created #{Merchant.count} merchants."
 
     CSV.foreach('./lib/csv/items.csv', headers: true, header_converters: :symbol) do |row|
       Item.create(  id:          row[:id],
@@ -28,6 +30,7 @@ namespace :import do
                     created_at:  row[:created_at],
                     updated_at:  row[:updated_at])
     end
+    puts "Created #{Item.count} items."
 
     CSV.foreach('./lib/csv/invoices.csv', headers: true, header_converters: :symbol) do |row|
       Invoice.create!( id:         row[:id],
@@ -47,6 +50,7 @@ namespace :import do
                           created_at: row[:created_at],
                           updated_at: row[:updated_at])
     end
+    puts "Created #{InvoiceItem.count} invoice_items. Almost done!"
 
     CSV.foreach('./lib/csv/transactions.csv', headers: true, header_converters: :symbol) do |row|
       Transaction.create!(id:                          row[:id],
@@ -57,5 +61,6 @@ namespace :import do
                           created_at:                  row[:created_at],
                           updated_at:                  row[:updated_at])
     end
+    puts "Created #{Transaction.count} transactions. Huzzah!"
   end
 end
