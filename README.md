@@ -21,17 +21,47 @@ diagram of the tables and their relationships.
 
 4. Check that the data has been imported.
  * `rails c`
- ** `Customer.first`
- ** `Merchant.first`
- ** `Item.first`
- ** `Invoice.first`
- ** `InvoiceItem.first`
- ** `Transaction.first`
+ ```
+ Customer.first
+ Merchant.first
+ Item.first
+ Invoice.first
+ InvoiceItem.first
+ Transaction.first
+ ```
 
-4. Once the database has been seeded you can run the tests.
+## Running the tests
+To run the test suite, simply run rspec terminal command from the root directory.
 `rspec`
 
-5. You can then run the server.
+## Deployment
+To deploy Rails Engine locally, start the server in your terminal.
 `rails s`
 
-6. You can then go to localhost:3000/api/v1/____(url of choice) which can be located in the routes file under config.
+## Endpoints
+
+### Merchants
+* `GET /api/v1/merchants/:id/items` returns a collection of items associated with that merchant
+* GET `/api/v1/merchants/:id/invoices` returns a collection of invoices associated with that merchant from their known orders
+
+### Invoices
+* GET `/api/v1/invoices/:id/transactions` returns a collection of associated transactions
+* GET `/api/v1/invoices/:id/invoice_items` returns a collection of associated invoice items
+* GET `/api/v1/invoices/:id/items` returns a collection of associated items
+* GET `/api/v1/invoices/:id/customer` returns the associated customer
+* GET `/api/v1/invoices/:id/merchant` returns the associated merchant
+
+### Invoice Items
+* GET `/api/v1/invoice_items/:id/invoice` returns the associated invoice
+* GET `/api/v1/invoice_items/:id/item` returns the associated item
+
+### Items
+* GET `/api/v1/items/:id/invoice_items` returns a collection of associated invoice items
+* GET `/api/v1/items/:id/merchant` returns the associated merchant
+
+### Transactions
+* GET `/api/v1/transactions/:id/invoice` returns the associated invoice
+
+### Customers
+* GET `/api/v1/customers/:id/invoices` returns a collection of associated invoices
+* GET `/api/v1/customers/:id/transactions` returns a collection of associated transactions
