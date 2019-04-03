@@ -9,17 +9,17 @@ diagram of the tables and their relationships.
 
 # Set up and Installation
 
-1. clone down the repo.
-`git clone github.com/shebesabrina/rails-engine.git`  
+1. clone down the repo.  
+`git clone github.com/shebesabrina/rails-engine.git`   
 `bundle update`
 
-2. Set up the migration.
+2. Set up the migration.  
 `rake db:{create,migrate}`
 
-3. Import the CSV data.
+3. Import the CSV data.  
 `rake import:all`
 
-4. Check that the data has been imported.
+4. Check that the data has been imported.  
  * `rails c`
  ```
  Customer.first
@@ -31,11 +31,11 @@ diagram of the tables and their relationships.
  ```
 
 ## Running the tests
-To run the test suite, simply run rspec terminal command from the root directory.
+To run the test suite, simply run rspec terminal command from the root directory.  
 `rspec`
 
 ## Deployment
-To deploy Rails Engine locally, start the server in your terminal.
+To deploy Rails Engine locally, start the server in your terminal.  
 `rails s`
 
 ## Endpoints
