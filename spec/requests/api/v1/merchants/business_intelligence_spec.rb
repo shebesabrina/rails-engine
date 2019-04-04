@@ -19,7 +19,7 @@ describe 'Merchants business intelligence API' do
     invoice_1.items << item_1
     invoice_2.items << item_2
     invoice_3.items << item_3
-    
+
     transaction_1 = create(:transaction, invoice_id: invoice_1.id)
     transaction_2 = create(:transaction, invoice_id: invoice_2.id)
     transaction_3 = create(:transaction, invoice_id: invoice_3.id)
